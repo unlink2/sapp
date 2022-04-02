@@ -1,0 +1,16 @@
+[package]
+name = "jated"
+version = "0.1.0"
+authors = ["Lukas Krickl <lukas@krickl.dev>"]
+description = ""
+license = "MIT"
+homepage = "https://github.com/unlink2/jated"
+readme = "../README.md"
+edition = "2021"
+
+[lib]
+name = "jated"
+path = "src/lib.rs"
+
+[dependencies]
+image = "0.24.1"
