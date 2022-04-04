@@ -6,7 +6,7 @@ use crate::prelude::*;
 
 /// This module describes a texture atlas
 #[derive(Clone, Debug, Serialize, Deserialize, Default)]
-pub struct Atlas {
+pub struct Atlas<T> where T: GenericAtlasImage {
     pub id: String,
 
     pub size: (usize, usize),
@@ -17,8 +17,8 @@ pub struct Atlas {
     pub output: Option<PathBuf>,
 
     #[serde(skip)]
-    image: AtlasImage,
+    image: T,
 }
 
-impl Atlas {
+impl<T> Atlas<T> where T: GenericAtlasImage {
 }

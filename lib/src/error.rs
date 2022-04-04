@@ -1,10 +1,23 @@
-use std::path::PathBuf;
+use std::{path::PathBuf};
 
+use image::ImageError;
 
-#[derive(Debug, Clone)]
+#[derive(Debug, thiserror::Error)]
 pub enum Error {
+    #[error("Image coordinates out of bounds")]
     CoordinateOutOfBounds((usize, usize)),
-    ImageError(PathBuf) 
+
+    #[error("Image error {source}")]
+    ImageError {
+        #[source]
+        source: image::ImageError
+    }
 }
 
-
+impl From<ImageError> for Error {
+    fn from(err: ImageError) -> Self {
+        Self::ImageError {
+            source:err
+        }
+    }
+}

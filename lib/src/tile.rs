@@ -1,7 +1,7 @@
 use image::imageops::rotate270;
 use serde::{Deserialize, Serialize};
 
-use crate::{error::Error, image::AtlasImage, prelude::Attributes};
+use crate::{error::Error, image::{AtlasImage, GenericAtlasImage}, prelude::Attributes};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub enum TileOp {
@@ -15,7 +15,7 @@ pub enum TileOp {
 impl TileOp {
     pub fn apply(
         &self,
-        image: &mut AtlasImage,
+        image: &mut dyn GenericAtlasImage,
         pos: (usize, usize),
         size: (usize, usize),
     ) -> Result<(), Error> {
@@ -56,7 +56,7 @@ impl Tile {
         self
     }
 
-    pub fn apply(&self, image: &mut AtlasImage, tile_size: (usize, usize)) -> Result<(), Error> {
+    pub fn apply(&self, image: &mut dyn GenericAtlasImage, tile_size: (usize, usize)) -> Result<(), Error> {
         self.ops
             .iter()
             .try_for_each(|op| op.apply(image, self.pos, tile_size))
