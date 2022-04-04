@@ -20,7 +20,7 @@ impl TileOp {
         size: (u32, u32),
     ) -> Result<(), Error> {
         match self {
-            Self::Copy(dest) => image.copy_to(pos, *dest, size),
+            Self::Copy(origin) => image.copy_to(*origin, pos, size),
             Self::Rotate180 => image.rotate180(pos, size),
             Self::Rotate270 => image.rotate270(pos, size),
             Self::Rotate90 => image.rotate90(pos, size),
@@ -47,14 +47,12 @@ impl Tile {
         }
     }
 
-    pub fn add_attr(mut self, attr: Attributes) -> Self {
+    pub fn add_attr(&mut self, attr: Attributes) {
         self.attrs.push(attr);
-        self
     }
 
-    pub fn add_op(mut self, op: TileOp) -> Self {
+    pub fn add_op(&mut self, op: TileOp) {
         self.ops.push(op);
-        self
     }
 
     pub fn apply(
@@ -65,5 +63,24 @@ impl Tile {
         self.ops
             .iter()
             .try_for_each(|op| op.apply(image, self.pos, tile_size))
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use crate::image::AtlasImage;
+
+    use super::*;
+
+    #[test]
+    fn it_should_apply_all_operations() {
+        let mut image = AtlasImage::new("./assets/source.png").unwrap();
+        let expected = AtlasImage::new("./assets/it_should_rotate270.png").unwrap();
+
+        let mut tile = Tile::new((8, 8));
+        tile.add_op(TileOp::Rotate90);
+        tile.add_op(TileOp::Rotate180);
+        tile.apply(&mut image, (8, 8)).unwrap();
+        assert_eq!(expected, image);
     }
 }
