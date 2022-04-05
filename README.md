@@ -26,6 +26,14 @@ cargo install --path ./cli
 
 ## Usage
 
+The current CLI tool is based entierly on a json config file. 
+To run the example use the following command:
+
+```sh
+cargo run -- lib/assets/source.png -c example/example.json -o out.png
+```
+
+This will apply the transofmration to the source image.
 
 ## License
 
