@@ -60,9 +60,13 @@ impl Tile {
         image: &mut dyn GenericAtlasImage,
         tile_size: (u32, u32),
     ) -> Result<(), Error> {
-        self.ops
-            .iter()
-            .try_for_each(|op| op.apply(image, self.pos, tile_size))
+        self.ops.iter().try_for_each(|op| {
+            op.apply(
+                image,
+                (self.pos.0 * tile_size.0, self.pos.1 * tile_size.1),
+                tile_size,
+            )
+        })
     }
 }
 
@@ -77,7 +81,7 @@ mod test {
         let mut image = AtlasImage::new("./assets/source.png").unwrap();
         let expected = AtlasImage::new("./assets/it_should_rotate270.png").unwrap();
 
-        let mut tile = Tile::new((8, 8));
+        let mut tile = Tile::new((1, 1));
         tile.add_op(TileOp::Rotate90);
         tile.add_op(TileOp::Rotate180);
         tile.apply(&mut image, (8, 8)).unwrap();

@@ -46,11 +46,11 @@ mod test {
         let mut image = AtlasImage::new("./assets/source.png").unwrap();
         let expected = AtlasImage::new("./assets/it_should_apply_all.png").unwrap();
 
-        let mut tile1 = Tile::new((8, 8));
+        let mut tile1 = Tile::new((1, 1));
         tile1.add_op(TileOp::Rotate90);
         tile1.add_op(TileOp::Rotate180);
 
-        let mut tile2 = Tile::new((8, 16));
+        let mut tile2 = Tile::new((1, 2));
         tile2.add_op(TileOp::Copy((8, 8)));
 
         let mut atlas = Atlas::new((8, 8));
