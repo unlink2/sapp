@@ -10,6 +10,18 @@ pub enum Error {
         #[source]
         source: image::ImageError,
     },
+
+    #[error("IO Error {source}")]
+    IOError {
+        #[source]
+        source: std::io::Error
+    },
+    
+    #[error("JSON Error {source}")]
+    JSONError {
+        #[source]
+        source: serde_json::Error
+    }
 }
 
 impl PartialEq for Error {
@@ -26,3 +38,16 @@ impl From<ImageError> for Error {
         Self::ImageError { source: err }
     }
 }
+
+impl From<std::io::Error> for Error {
+    fn from(err: std::io::Error) -> Self {
+        Self::IOError { source: err }
+    }
+}
+
+impl From<serde_json::Error> for Error {
+    fn from(err: serde_json::Error) -> Self {
+        Self::JSONError { source: err }
+    }
+}
+
