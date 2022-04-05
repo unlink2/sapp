@@ -20,7 +20,7 @@ impl TileOp {
         size: (u32, u32),
     ) -> Result<(), Error> {
         match self {
-            Self::Copy(origin) => image.copy_to(*origin, pos, size),
+            Self::Copy(origin) => image.copy_to((origin.0 * size.0, origin.1 * size.1), pos, size),
             Self::Rotate180 => image.rotate180(pos, size),
             Self::Rotate270 => image.rotate270(pos, size),
             Self::Rotate90 => image.rotate90(pos, size),
@@ -32,10 +32,13 @@ impl TileOp {
 
 #[derive(Clone, Debug, Serialize, Deserialize, Default)]
 pub struct Tile {
+    #[serde(default)]
     pub id: String,
     pub pos: (u32, u32),
 
+    #[serde(default)]
     pub attrs: Vec<Attributes>,
+    #[serde(default)]
     pub ops: Vec<TileOp>,
 }
 

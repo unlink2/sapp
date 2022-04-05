@@ -4,11 +4,14 @@ use serde::{Deserialize, Serialize};
 /// This module describes a texture atlas
 #[derive(Clone, Debug, Serialize, Deserialize, Default)]
 pub struct Atlas {
+    #[serde(default)]
     pub id: String,
 
     pub size: (u32, u32),
 
+    #[serde(default)]
     pub tiles: Vec<Tile>,
+    #[serde(default)]
     pub attrs: Vec<Attributes>,
 }
 
@@ -51,7 +54,7 @@ mod test {
         tile1.add_op(TileOp::Rotate180);
 
         let mut tile2 = Tile::new((1, 2));
-        tile2.add_op(TileOp::Copy((8, 8)));
+        tile2.add_op(TileOp::Copy((1, 1)));
 
         let mut atlas = Atlas::new((8, 8));
         atlas.add_tile(tile1);
