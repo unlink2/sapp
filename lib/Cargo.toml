@@ -2,7 +2,7 @@
 name = "sapp"
 version = "0.1.0"
 authors = ["Lukas Krickl <lukas@krickl.dev>"]
-description = ""
+description = "Core library for Sapp. Sapp is a simple sprite sheet preprocessor that allows mirroring and copying tiles based on a configuration file."
 license = "MIT"
 homepage = "https://github.com/unlink2/sapp"
 readme = "../README.md"
