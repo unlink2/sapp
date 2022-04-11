@@ -1,15 +1,15 @@
 [package]
-name = "jated-cli"
+name = "sapp-cli"
 version = "0.1.0"
 authors = ["Lukas Krickl <lukas@krickl.dev>"]
 description = ""
 license = "MIT"
-homepage = "https://github.com/unlink2/jated"
+homepage = "https://github.com/unlink2/sapp"
 edition = "2021"
 
 [[bin]]
-name = "jated"
+name = "sapp"
 path = "src/main.rs"
 
 [dependencies]
-jated = {path = "../lib"}
+sapp = {path = "../lib"}
