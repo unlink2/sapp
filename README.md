@@ -1,10 +1,10 @@
 
-# jated
+# sapp
 
-![](https://github.com/unlink2/jated/actions/workflows/build.yml/badge.svg)
-![](https://github.com/unlink2/jated/actions/workflows/test.yml/badge.svg)
+![](https://github.com/unlink2/sapp/actions/workflows/build.yml/badge.svg)
+![](https://github.com/unlink2/sapp/actions/workflows/test.yml/badge.svg)
 
-Just A Tile EDitor (jated) is a simple tile sheet helper tool. 
+Sprite Atlas Pre Processor (sapp) is a simple tile sheet helper tool. 
 It is designed as a helper tool for quickly mirroring, moving and copying tiles to create a more complete tilesheet easily.
 
 ## Table of content

@@ -1,8 +1,8 @@
 use std::env::args;
 
-use jated::error::Error;
-use jated::cli::*;
+use sapp::cli::*;
+use sapp::error::Error;
 
 fn main() -> Result<(), Error> {
-    exec(&args().collect::<Vec<String>>()) 
+    exec(&args().collect::<Vec<String>>())
 }
