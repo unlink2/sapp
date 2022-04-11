@@ -12,4 +12,4 @@ name = "sapp"
 path = "src/main.rs"
 
 [dependencies]
-sapp = {path = "../lib"}
+sapp = {version="0.1.0", path = "../lib"}
